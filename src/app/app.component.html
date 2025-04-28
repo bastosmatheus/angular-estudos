@@ -1,18 +1,37 @@
 <main class="main">
   <div class="content">
     <div class="left-side">
-      <app-header name="{{ name }}"></app-header>
+      <app-header [name]="name"></app-header>
+
+      <app-form [isModalOpen]="isModalOpen"></app-form>
 
       <p>Todos os pontos de interesse registrados por {{ name }}</p>
 
       <button
-        id="{{ idButton }}"
+        [id]="idButton"
         (focus)="printHello()"
         (click)="updateName($event)"
       >
-        Atualiza nome
+        Atualizar nome
       </button>
 
+      <button [id]="idButton" (focus)="printHello()" (click)="showModal()">
+        Abrir modal
+      </button>
+
+      <button
+        [id]="idButton"
+        (focus)="printHello()"
+        (click)="togglePointsOfInterest()"
+      >
+        {{
+          isUlPOIOpen
+            ? "Esconder pontos de interesse"
+            : "Mostrar pontos de interesse"
+        }}
+      </button>
+
+      @if (isUlPOIOpen) {
       <div>
         <h3>POI:</h3>
         <ul>
@@ -27,6 +46,7 @@
           }
         </ul>
       </div>
+      }
     </div>
   </div>
 </main>

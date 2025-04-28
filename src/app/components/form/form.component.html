@@ -1,0 +1,56 @@
+@if (isModalOpen) {
+<div class="modal">
+  <form [formGroup]="form">
+    <label for="name">Nome do ponto de interesse</label>
+
+    <input
+      id="name"
+      name="name"
+      type="text"
+      placeholder="Informe o nome do ponto"
+      formControlName="name"
+    />
+
+    @if(form.controls['name'].errors?.['minlength'] &&
+    form.controls['name'].touched) {
+    <span class="form-error"
+      >O nome do POI precisa ter
+      {{ form.controls['name'].errors?.['minlength'].requiredLength }}
+      caracteres</span
+    >
+    }
+
+    <label for="cordX">Coordenada X</label>
+    <input
+      id="cordX"
+      name="cordX"
+      type="number"
+      placeholder="Informe a coordenada X"
+      formControlName="x"
+    />
+
+    @if(form.controls['x'].errors?.['min'] && form.controls['x'].touched) {
+    <span class="form-error">A coordenada deve ser maior que 0</span>
+    }
+
+    <label for="cordY">Coordenada Y</label>
+    <input
+      id="cordY"
+      name="cordY"
+      type="number"
+      placeholder="Informe a coordenada Y"
+      formControlName="y"
+    />
+
+    @if(form.controls['y'].errors?.['min'] && form.controls['y'].touched) {
+    <span class="form-error">A coordenada deve ser maior que 0</span>
+    }
+
+    <input
+      type="submit"
+      (click)="createPointOfInterest()"
+      value="Criar ponto de interesse"
+    />
+  </form>
+</div>
+}

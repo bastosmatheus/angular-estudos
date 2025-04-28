@@ -16,6 +16,8 @@ export class AppComponent implements OnInit {
   name = 'Matheus';
   idButton = 'new-id';
   pointsOfInterest: PointOfInterest[] = [];
+  isModalOpen = false;
+  isUlPOIOpen = false;
 
   ngOnInit(): void {
     this.pointOfInterestService.getAll().subscribe((data) => {
@@ -29,5 +31,13 @@ export class AppComponent implements OnInit {
 
   printHello() {
     console.log(`Hello, ${this.name}!`);
+  }
+
+  showModal() {
+    this.isModalOpen = true;
+  }
+
+  togglePointsOfInterest() {
+    this.isUlPOIOpen = !this.isUlPOIOpen;
   }
 }
